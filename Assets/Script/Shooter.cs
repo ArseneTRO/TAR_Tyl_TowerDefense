@@ -16,16 +16,16 @@ public class Shooter : MonoBehaviour
     {
         
     }
-
-    /*var temp = Instantiate(Bullet);
-    temp.transform.position = transform.position;*/
     
-    void OnTriggerEnter(Collider other)  //Quand il rentre dans la zone de détection, le trigger crée pour l'occasion
+    void OnTriggerEnter2D(Collider2D other)  //Quand il rentre dans la zone de détection, le trigger crée pour l'occasion
     {
+        print("TriggerEnter");
         if (other.tag == "ennemie") //s'il as le tag "ennemie"
         {
             print("Y'a un ennemie");
-            /*bullet.targetEnemy = other.GetComponent<Transform>();  //Récupérer son Transform et le give à la bullet comme cible*/
+            var Temp = Instantiate(bullet);
+            Temp.transform.position = transform.position;
+            bullet.targetEnemy = other.GetComponent<Transform>();  //Récupérer son Transform et le give à la bullet comme cible
 
         }
     }

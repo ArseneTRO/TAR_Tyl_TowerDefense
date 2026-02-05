@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -15,13 +16,23 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Vector3 dirToTarget = (targetEnemy.position - transform.position).normalized;
+
+        transform.position += dirToTarget * speed;
+    
         if (targetEnemy == null)
         {
-            Destroy(gameObject);
+            StartCoroutine(DestroyObject());
         }
-        
-        Vector3 dirToTarget = (targetEnemy.position - transform.position).normalized;
-        
-        transform.position += dirToTarget*speed;
+
     }
+    
+    IEnumerator DestroyObject()
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
+        
+    }
+
 }
